@@ -1,1 +1,1 @@
-# SQL-Erik-Unevik-DE24
+# SQL course user duckdb
