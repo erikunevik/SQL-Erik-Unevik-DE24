@@ -1,5 +1,7 @@
 -- AND operator
 -- computations 200k-500k SEK per month 
+SELECT * FROM main.data_jobs;
+
 SELECT
 	job_title,
 	experience_level,
