@@ -1,4 +1,5 @@
-SELECT * FROM programming.python WHERE ID=2;
+
+SELECT * FROM databse.duckdb;
 
 DELETE
 FROM

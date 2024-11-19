@@ -13,6 +13,8 @@ INSERT
 VALUES ('CRUD', 'create, read, update, delete - basic actions to be performed on data'),
 	   ('range condition', 'filter data within a specific range of values');
 	  
+	  SELECT * FROM database.sql;
+	  
 	  
 	  
 INSERT
@@ -21,6 +23,11 @@ INSERT
 	description)
 VALUES ('class',
 'code template for creatig objects');
+
+SELECT
+	*
+FROM
+	programming.python;
 
 INSERT
 	INTO
@@ -47,6 +54,8 @@ VALUES
 'A schema in DuckDB that stores system tables and metadata about the database objects.'),
 ('INFORMATION_SCHEMA',
 'A set of views in DuckDB that provides information about the database metadata such as tables, columns, and data types.');
+
+SELECT * FROM database.duckdb;
 
 
 	  
