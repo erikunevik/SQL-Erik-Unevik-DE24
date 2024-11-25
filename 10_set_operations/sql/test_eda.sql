@@ -1,0 +1,4 @@
+DESC;
+
+SELECT * FROM actor;
+
