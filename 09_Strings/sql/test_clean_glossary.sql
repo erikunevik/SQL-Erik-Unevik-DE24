@@ -22,3 +22,5 @@ CREATE TABLE IF NOT EXISTS refined.sql_glossary AS (
 );
 
 SELECT * FROM refined.sql_glossary;
+
+SELECT * FROM staging.sql_glossary;
