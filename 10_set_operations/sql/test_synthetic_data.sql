@@ -50,3 +50,6 @@ INSERT INTO lars.products VALUES
 SELECT * FROM lars.sales_jan; 
 
 SELECT * FROM lars.sales_feb; 
+
+USE electronic_shop;
+SHOW TABLES FROM lars;

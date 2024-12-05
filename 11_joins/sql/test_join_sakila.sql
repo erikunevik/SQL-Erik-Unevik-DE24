@@ -78,6 +78,33 @@ LEFT JOIN main.city c ON
     a.city_id = c.city_id
 LEFT JOIN main.country cty ON
     c.country_id = cty.country_id;
+   
+   ---- Which actors played in which movies
+   
+SELECT * FROM main.film_actor fa;
+SELECT * FROM main.film;
+SELECT * FROM main.actor a;
+SELECT * FROM main.film;
+
+desc;
+   
+   SELECT 
+   		a.first_name,
+   		a.last_name,
+   		f.title AS film_title
+   FROM
+   		main.film f
+   LEFT JOIN main.film_actor fa ON
+   		f.film_id = fa.film_id 
+   LEFT JOIN main.actor a ON
+   		a.actor_id = fa.actor_id ;
+   	
+   	
+   	
+   
+   
+   
+   SELECT * FROM main.film;
 
  
  

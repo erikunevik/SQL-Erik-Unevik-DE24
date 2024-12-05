@@ -2,6 +2,7 @@ SELECT * FROM lars.sales_jan
 UNION
 SELECT * FROM lars.sales_feb;
 
+
 SELECT * EXCLUDE(sale_date) FROM lars.sales_jan
 UNION
 SELECT * EXCLUDE(sale_date) FROM lars.sales_feb; -- De blir samma då det enda som skiljer är datumet
@@ -22,6 +23,9 @@ SELECT product_name, amount FROM lars.sales_jan
 EXCEPT
 SELECT product_name, amount FROM lars.sales_feb; -- Man tar bort det som fanns i bägge
 
+desc;
+
+select * from lars.sales_feb;
 
 
 

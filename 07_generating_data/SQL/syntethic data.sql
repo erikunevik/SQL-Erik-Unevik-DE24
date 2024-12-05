@@ -6,13 +6,14 @@ SELECT RANDOM();
 
 -- Randomiserar till 6 men sen + 1 så upptill 7 pga 1an, AS dice upp till 100, floor avrundar
 
-SELECT FLOOR(RANDOM()*6+1) AS dice FROM generate_series(100);
+SELECT FLOOR(RANDOM()*6+1) AS dice FROM generate_series(100); -- Fungerar för man avrundar alltid nedat
 
 
 SELECT
 	UNNEST (generate_series(100)) AS id,
 	'student_' || id AS student,
 	ROUND(RANDOM()*100) AS score;
+
 
 SELECT
 	id,

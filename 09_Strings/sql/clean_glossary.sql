@@ -133,7 +133,54 @@ SELECT
     END AS modified_example
 FROM refined.sql_glossary2;
 
--- fungerar ej 
+-- fungerar ej prövar ny
+
+UPDATE refined.sql_glossary2
+SET example = regexp_replace(example, '\\b(select|create table|insert into|from|drop table)\\b', '\1')
+WHERE example ~ '\\b(select|create table|insert into|from|drop table)\\b';
+
+SELECT * FROM refined.sql_glossary2;
+
+-- Gick ej, prövar ny
+
+UPDATE refined.sql_glossary2
+SET example = regexp_replace(
+    example, 
+    '\\b(select|create table|insert into|from|drop table)\\b', 
+    UPPER('\1')
+)
+WHERE example ~ '\\b(select|create table|insert into|from|drop table)\\b';
+
+SELECT * FROM refined.sql_glossary2;
+
+-- Fungerar ej:
+
+UPDATE refined.sql_glossary2
+SET example = regexp_replace(
+    regexp_replace(
+        regexp_replace(
+            regexp_replace(
+                regexp_replace(
+                    example,
+                    '\\bselect\\b', 'SELECT'
+                ),
+                '\\bcreate table\\b', 'CREATE TABLE'
+            ),
+            '\\binsert into\\b', 'INSERT INTO'
+        ),
+        '\\bfrom\\b', 'FROM'
+    ),
+    '\\bdrop table\\b', 'DROP TABLE'
+)
+WHERE example ~ '\\b(select|create table|insert into|from|drop table)\\b';
+
+SELECT * FROM refined.sql_glossary2;
+
+-- Fungerar ej. 
+
+
+
+
 
 
 
