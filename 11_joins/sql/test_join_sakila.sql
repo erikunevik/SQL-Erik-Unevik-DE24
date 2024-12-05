@@ -3,21 +3,24 @@ LOAD sqlite;
 
 call sqlite_attach('C:/Users/eriku/Desktop/DataenginerSTI2024-2026/SQL30YP/Github/SQL-Erik-Unevik-DE24/11_joins/data/sqlite-sakila2.db');
 
-
-SELECT * FROM main.film_actor fa;
 SELECT * FROM main.film;
-SELECT * FROM main.actor a;
+
+
 
 -- Which actor played which film_id?
 
+SELECT * FROM main.film_actor fa;
+SELECT * FROM main.actor a;
+
 SELECT 
+	a.actor_id,
 	a.first_name,
 	a.last_name,
 	fa.film_id
 
 FROM main.actor a
 LEFT JOIN main.film_actor fa ON
-a.actor_id;
+fa.actor_id = a.actor_id; 
 
 -- Which actor played which film title?
 
@@ -32,15 +35,48 @@ LEFT JOIN main.film_actor fa ON
 	a.actor_id = fa.actor_id 
 LEFT JOIN main.film f ON f.film_id = fa.film_id ; -- Varför får jag 1000 kolumner?
 
+--- Denna ser mkt bättre ut
+
+SELECT
+	a.first_name,
+	a.last_name,
+	f.title
+FROM
+	main.actor a
+LEFT JOIN main.film_actor fa ON
+	fa.actor_id = a.actor_id
+LEFT JOIN main.film f ON
+	f.film_id = fa.film_id; 
+
+-- Prövar full join.inner join mm. 
+
+SELECT
+	a.first_name,
+	a.last_name,
+	f.title
+FROM
+	main.actor a
+RIGHT JOIN main.film_actor fa ON
+	fa.actor_id = a.actor_id
+RIGHT JOIN main.film f ON
+	f.film_id = fa.film_id; 
+
+
+-- Prövar egen
+
+
 ---------- Film and category
 
+SELECT * FROM main.category; -- genre cat id 
+SELECT * FROM main.film_category; -- DÄr har man bägge idn 
+SELECT * FROM main.film; -- title  film id 
 
 
 SELECT
     f.title,
     c.name AS 'genre'
 FROM
-    main.film_category fc
+    main.film_category fc -- Man tar från denna för den har bägge idn
 INNER JOIN main.category c ON
     fc.category_id = c.category_id
 INNER JOIN main.film f ON
@@ -51,16 +87,17 @@ INNER JOIN main.film f ON
    
    DESC;
   
-  SELECT * FROM main.address a ;
- 
-  SELECT * FROM main.city c ;
-
-SELECT * FROM main.country c ;
 
 -- Får ut en hel del ID
   
   
   --- Staff, address, city, country. Can I join this?
+  
+    SELECT * FROM main.address a ; -- add id, address, city id
+   SELECT * FROM main.city c ;  -- city id, city, country id
+SELECT * FROM main.country c ; -- country id, country
+SELECt* FROM main.staff; -- namn, address id, 
+
   
 
  
@@ -73,10 +110,10 @@ SELECT * FROM main.country c ;
 FROM 
     main.staff s
 LEFT JOIN main.address a ON 
-    s.address_id = a.address_id
-LEFT JOIN main.city c ON
+    s.address_id = a.address_id -- staff ger adress a från staff
+LEFT JOIN main.city c ON -- adress a ger till city c
     a.city_id = c.city_id
-LEFT JOIN main.country cty ON
+INNER JOIN main.country cty ON --ity ser ger till country 
     c.country_id = cty.country_id;
    
    ---- Which actors played in which movies
@@ -85,6 +122,8 @@ SELECT * FROM main.film_actor fa;
 SELECT * FROM main.film;
 SELECT * FROM main.actor a;
 SELECT * FROM main.film;
+
+
 
 desc;
    
