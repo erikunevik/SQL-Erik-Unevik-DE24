@@ -56,7 +56,7 @@ SELECT
 	p.supplier,
 	s.total_amount
 FROM main.products p
-LEFT JOIN main.sales s ON
+INNER JOIN main.sales s ON
 p.product_id = s.product_id;
 
 --- Variant två. 
@@ -68,7 +68,25 @@ SELECT
 	s.total_amount,
 	s.sale_date
 FROM main.products p
-LEFT JOIN main.sales s ON
+RIGHT JOIN main.sales s ON
+p.product_id = s.product_id;
+
+SELECT 
+	p.product_name,
+	p.category,
+	p.supplier,
+	s.total_amount,
+	s.sale_date
+FROM main.products p
+FULL JOIN main.sales s ON
+p.product_id = s.product_id;
+
+-- 
+
+SELECT *
+
+FROM main.products p
+RIGHT JOIN main.sales s ON
 p.product_id = s.product_id;
 
 

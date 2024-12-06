@@ -109,11 +109,11 @@ SELECt* FROM main.staff; -- namn, address id,
     cty.country
 FROM 
     main.staff s
-LEFT JOIN main.address a ON 
+FULL JOIN main.address a ON 
     s.address_id = a.address_id -- staff ger adress a från staff
-LEFT JOIN main.city c ON -- adress a ger till city c
+FULL JOIN main.city c ON -- adress a ger till city c
     a.city_id = c.city_id
-INNER JOIN main.country cty ON --ity ser ger till country 
+FULL JOIN main.country cty ON --ity ser ger till country 
     c.country_id = cty.country_id;
    
    ---- Which actors played in which movies
