@@ -263,7 +263,76 @@ ORDER BY
  	c.first_name,
     c.last_name;
    
-   --   i) Make a more extensive EDA of your choice on the Sakila database.
+   -- 2.2   i) Make a more extensive EDA of your choice on the Sakila database.
+   
+   -- I)  Which is the most common genre by percentage
+   
+
+SELECT * FROM category; -- name, category_id
+SELECT * FROM film; -- film_id, title
+SELECT * FROM film_category; -- film_id, category_id
+
+SELECT
+	c.name AS filmgenre,
+	(COUNT(c.name) * 100 / 1000) AS procent	-- Man gångrar förekomsten med 100 och delar sedan med antalet totala rader 
+FROM 
+	main.category c
+INNER JOIN 
+main.film_category f ON c.category_id = f.category_id
+INNER JOIN 
+main.film fi ON f.film_id = fi.film_id	
+GROUP BY c.name
+ORDER BY procent DESC;
+
+-- II) Which actors have the most contributions among the different ratings. 
+
+
+SELECT * FROM film; -- film_id, title, rating
+SELECT * FROM actor; -- actor_id, first_name, last_name
+SELECT * FROM film_actor; -- actor_id, film_id
+
+SELECT
+    first_name,
+    last_name,
+    rating,
+    säkerhetsklass
+FROM (
+    SELECT
+        a.first_name,
+        a.last_name,
+        f.rating,
+        COUNT(f.rating) AS säkerhetsklass,
+        ROW_NUMBER() OVER (PARTITION BY f.rating ORDER BY COUNT(f.rating) DESC) AS rank
+    FROM 
+        main.actor a
+    INNER JOIN 
+        main.film_actor fa ON a.actor_id = fa.actor_id
+    INNER JOIN 
+        main.film f ON fa.film_id = f.film_id
+    GROUP BY 
+        a.first_name, a.last_name, f.rating
+) AS ranked_actors
+WHERE rank = 1;
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+   
+   
 
 	
 
