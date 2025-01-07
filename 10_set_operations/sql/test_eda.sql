@@ -6,6 +6,21 @@ SELECT * FROM main.film;
 
 SELECT * FROM main.film_list;
 
+SELECT
+	rating, COUNT(*)
+FROM
+	main.film_list
+GROUP BY
+	rating;
+
+SELECT
+	rating,
+	AVG(price)
+FROM
+	main.film_list
+GROUP BY
+	rating;
+
 SELECT * FROM main.film_category;
 
 SELECT * FROM main.country;
